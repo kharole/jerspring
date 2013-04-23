@@ -2,13 +2,15 @@ package org.home;
 
 import org.springframework.stereotype.Component;
 
+import javax.annotation.security.PermitAll;
+import javax.annotation.security.RolesAllowed;
 import javax.print.attribute.standard.Media;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.List;
+
+import static java.util.Arrays.asList;
 
 /**
  * Created with IntelliJ IDEA.
@@ -28,11 +30,16 @@ public class WorldResource {
     @GET
     @Path("/{world}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response helloWorld(@PathParam("world") String world) {
+    @RolesAllowed("bear")
+    public List<World> helloWorld(@PathParam("world") String world) {
         World w = new World();
         w.setHello(hello);
         w.setWorld(world);
-        return Response.status(200).entity(w).build();
+        if("error".equals(world)) {
+            throw new WebApplicationException(Response.status(Response.Status.BAD_REQUEST).
+                    entity(w).type(MediaType.APPLICATION_JSON_TYPE).build());
+        }
+        return asList(w,w);
     }
 
 
