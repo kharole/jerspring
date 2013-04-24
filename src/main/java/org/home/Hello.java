@@ -1,5 +1,7 @@
 package org.home;
 
+import java.util.Date;
+
 /**
  * Created with IntelliJ IDEA.
  * User: Admin
@@ -10,6 +12,7 @@ package org.home;
 public class Hello {
 
     private String hello;
+    private Date date = new Date();
 
     public Hello(String hello) {
         this.hello = hello;
@@ -23,4 +26,11 @@ public class Hello {
         this.hello = hello;
     }
 
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
 }
