@@ -19,6 +19,8 @@ import static java.util.Arrays.asList;
  * Time: 23:02
  * To change this template use File | Settings | File Templates.
  */
+@Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
 public class WorldResource {
 
     private Hello hello;
@@ -42,6 +44,12 @@ public class WorldResource {
         return asList(w,w);
     }
 
+    @POST
+    @Path("/{world}")
+    public World echoHelloWorld(World world, @PathParam("world") String s) {
+        world.setWorld(s);
+        return world;
+    }
 
     public Hello getHello() {
         return hello;

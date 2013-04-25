@@ -12,6 +12,9 @@ public class World {
     private String world;
     private Hello hello;
 
+    public World() {
+    }
+
     public String getWorld() {
         return world;
     }
