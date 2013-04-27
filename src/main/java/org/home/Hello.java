@@ -14,6 +14,9 @@ public class Hello {
     private String hello;
     private Date date = new Date();
 
+    public Hello() {
+    }
+
     public Hello(String hello) {
         this.hello = hello;
     }
